@@ -13,10 +13,20 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Program Category", name: "category", widget: "select", options: ["empowering-grassroots", "education", "women-empowerment", "healthcare", "livelihood", "disaster-response", "culture-conservation"] }
+      - { label: "Program Category", name: "category", widget: "select", options: [
+          { label: "Empowering Grassroots", value: "empowering-grassroots" },
+          { label: "Education", value: "education" },
+          { label: "Women Empowerment", value: "women-empowerment" },
+          { label: "Healthcare", value: "healthcare" },
+          { label: "Livelihood", value: "livelihood" },
+          { label: "Disaster Response", value: "disaster-response" },
+          { label: "Culture Conservation", value: "culture-conservation" }
+        ]}
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
       - { label: "Photo Gallery", name: "gallery", widget: "list", field: { label: "Photo", name: "image", widget: "image" }, required: false }
+      - { label: "Video URL (YouTube/Vimeo Embed)", name: "video_url", widget: "string", required: false, hint: "Paste YouTube embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID) or MP4 link" }
+      - { label: "Document Upload (PDF/Doc)", name: "document_file", widget: "file", required: false }
       - { label: "Location / Venue", name: "location", widget: "string", default: "Food Corporation of India (FCI)" }
       - { label: "Summary", name: "summary", widget: "text" }
       - { label: "Full Content / Article", name: "body", widget: "markdown" }
