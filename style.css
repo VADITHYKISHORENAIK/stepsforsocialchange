@@ -696,3 +696,68 @@ footer h2, footer h3 {
     opacity: 1;
 }
 
+/* Program Cards Grid Restoration */
+.programmes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.programme-card {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.programme-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-color: #2d6a4f;
+}
+
+.programme-card.highlight {
+  border: 2px solid #2d6a4f;
+  background: #f4fbf7;
+}
+
+.programme-card .icon {
+  font-size: 2rem;
+  color: #2d6a4f;
+  margin-bottom: 15px;
+}
+
+.programme-card h3 {
+  font-size: 1.25rem;
+  color: #1b4332;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.programme-card p {
+  font-size: 0.95rem;
+  color: #6c757d;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-link-btn {
+  display: inline-block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #2d6a4f;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.programme-card:hover .card-link-btn {
+  color: #1b4332;
+  text-decoration: underline;
+}
