@@ -25,7 +25,7 @@ collections:
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
       - { label: "Photo Gallery", name: "gallery", widget: "list", field: { label: "Photo", name: "image", widget: "image" }, required: false }
-      - { label: "Video URL (YouTube/Vimeo Embed)", name: "video_url", widget: "string", required: false, hint: "Paste YouTube embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID) or MP4 link" }
+      - { label: "Video URL (YouTube/Vimeo Embed)", name: "video_url", widget: "string", required: false, hint: "Paste YouTube embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID)" }
       - { label: "Document Upload (PDF/Doc)", name: "document_file", widget: "file", required: false }
       - { label: "Location / Venue", name: "location", widget: "string", default: "Food Corporation of India (FCI)" }
       - { label: "Summary", name: "summary", widget: "text" }
