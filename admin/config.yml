@@ -1,0 +1,33 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "programs"
+    label: "Program Vlogs & Updates"
+    folder: "content/programs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { 
+          label: "Program Category", 
+          name: "category", 
+          widget: "select", 
+          options: [
+            "education", 
+            "women-empowerment", 
+            "empowering-grassroots", 
+            "healthcare", 
+            "livelihood", 
+            "disaster-response", 
+            "culture-conservation"
+          ] 
+        }
+      - { label: "Featured Cover Photo", name: "thumbnail", widget: "image" }
+      - { label: "YouTube Video URL (Optional)", name: "video_url", widget: "string", required: false }
+      - { label: "Detailed Activity Description", name: "body", widget: "markdown" }
