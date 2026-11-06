@@ -10,24 +10,13 @@ collections:
     label: "Program Vlogs & Updates"
     folder: "content/programs"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Program Category", name: "category", widget: "select", options: ["empowering-grassroots", "education", "women-empowerment", "healthcare", "livelihood", "disaster-response", "culture-conservation"] }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { 
-          label: "Program Category", 
-          name: "category", 
-          widget: "select", 
-          options: [
-            "education", 
-            "women-empowerment", 
-            "empowering-grassroots", 
-            "healthcare", 
-            "livelihood", 
-            "disaster-response", 
-            "culture-conservation"
-          ] 
-        }
-      - { label: "Featured Cover Photo", name: "thumbnail", widget: "image" }
-      - { label: "YouTube Video URL (Optional)", name: "video_url", widget: "string", required: false }
-      - { label: "Detailed Activity Description", name: "body", widget: "markdown" }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      - { label: "Photo Gallery", name: "gallery", widget: "list", field: { label: "Photo", name: "image", widget: "image" }, required: false }
+      - { label: "Location / Venue", name: "location", widget: "string", default: "Food Corporation of India (FCI)" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Full Content / Article", name: "body", widget: "markdown" }
