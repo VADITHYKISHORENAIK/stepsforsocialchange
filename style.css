@@ -1,0 +1,698 @@
+/* Base Styles & Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #1E5631; /* Deep Green from Logo */
+    --secondary-color: #F9A602; /* Gold/Yellow from gear */
+    --accent-color: #4C9A2A; /* Light Green */
+    --text-dark: #333333;
+    --text-light: #666666;
+    --bg-light: #F4F7F6;
+    --white: #FFFFFF;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.underline {
+    height: 4px;
+    width: 60px;
+    background-color: var(--secondary-color);
+    margin: 10px 0 30px 0;
+    border-radius: 2px;
+}
+
+.center-line {
+    margin: 10px auto 30px auto;
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary, .btn-donate {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    margin-left: 15px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    width: 100%;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--primary-color);
+}
+
+.logo span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-light);
+}
+
+.nav-logo-img {
+    height: 65px; /* You can increase or decrease this number to change the logo size */
+    width: auto;
+    border-radius: 50%; /* This keeps the circular edge perfectly smooth */
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.btn-donate {
+    background-color: var(--primary-color);
+    color: var(--white) !important;
+    padding: 10px 20px;
+}
+
+.btn-donate:hover {
+    background-color: var(--secondary-color);
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(30, 86, 49, 0.7); /* Deep Green Overlay */
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    color: var(--white);
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    color: var(--white);
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* About & Vision/Mission Grid */
+.about-text {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: var(--text-light);
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--accent-color);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-icon {
+    font-size: 40px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.card ul {
+    margin-left: 20px;
+    color: var(--text-light);
+}
+
+.card ul li {
+    margin-bottom: 10px;
+}
+
+/* Tribal Culture Section */
+.tribal-culture {
+    background: #FFFAF0; /* Warm earthy background */
+}
+
+.heritage-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Adjust this to match your specific column width */
+  aspect-ratio: 3 / 4; /* Fits the vertical orientation of your uploaded images */
+  overflow: hidden;
+  border-radius: 8px; /* Optional: rounds the corners slightly */
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps the images filling the space nicely */
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Smooth fading effect */
+  z-index: 1;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.culture-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.culture-content {
+    flex: 1;
+}
+
+.culture-content p {
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.culture-image {
+    flex: 1;
+}
+
+.culture-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Programmes Grid */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.program-card {
+    background: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.program-card i {
+    font-size: 50px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.program-card:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.program-card:hover h3, .program-card:hover p, .program-card:hover i {
+    color: var(--white);
+}
+
+.highlight-card {
+    background: #FFF3E0;
+    border: 2px solid var(--secondary-color);
+}
+
+/* Thrust Areas */
+.thrust-text {
+    max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+    color: var(--text-light);
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0 20px 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+footer h2, footer h3 {
+    color: var(--white);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    line-height: 2;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-contact p {
+    margin-bottom: 15px;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.social-icons a {
+    color: var(--white);
+    font-size: 20px;
+    margin-right: 15px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .culture-container {
+        flex-direction: column;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+}
+
+/* --- Team / Leadership Page Styles --- */
+.page-header {
+    background: var(--primary-color);
+    padding: 150px 0 80px 0;
+    color: var(--white);
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    color: var(--secondary-color);
+    font-size: 42px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.team-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 4px solid var(--secondary-color);
+}
+
+.team-info {
+    padding: 25px;
+}
+
+.team-info h3 {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.team-title {
+    display: block;
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team-info p {
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+/* Make the Founder's card stand out and span wider */
+.featured-member {
+    display: flex;
+    flex-direction: row;
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+}
+
+.featured-member .team-img-wrapper img {
+    width: 350px;
+    height: 100%;
+    border-bottom: none;
+    border-right: 4px solid var(--secondary-color);
+}
+
+.featured-member .team-info {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .featured-member {
+        flex-direction: column;
+    }
+    .featured-member .team-img-wrapper img {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 4px solid var(--secondary-color);
+    }
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; /* Reduced padding so the larger logo fits nicely */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-img {
+    height: 95px; /* Increased size significantly */
+    width: 95px; /* Forced width to match height for a perfect circle */
+    object-fit: cover; /* Ensures the image fills the circle without stretching */
+    border-radius: 50%;
+    display: block;
+    transform: scale(1.1); /* Slight zoom to cut out extra white borders */
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+    transform: scale(1.15); /* Slight pop effect when hovered */
+}
+
+/* --- Donate Page Styles --- */
+.donate-intro {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.donate-intro h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.donate-intro p {
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.donate-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.donate-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    border-top: 5px solid var(--secondary-color);
+}
+
+.donate-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.donate-card p {
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.qr-wrapper {
+    text-align: center;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+.qr-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.bank-details-list {
+    list-style: none;
+    padding: 0;
+}
+
+.bank-details-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.bank-details-list li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.bank-details-list li:last-child {
+    border-bottom: none;
+}
+
+.donate-thank-you {
+    margin-top: 50px;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .donate-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* --- Footer Social Icons --- */
+.footer-socials {
+    margin-top: 20px;
+}
+
+.social-icon.whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #25D366; /* Official WhatsApp Green */
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+}
+
+.social-icon.whatsapp i {
+    font-size: 22px;
+}
+
+.social-icon.whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+    color: #ffffff;
+}
+
+.carousel-slide {
+    display: none; /* Hide all slides by default */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-slide.active {
+    display: block; /* Only show the active slide */
+    opacity: 1;
+}
+

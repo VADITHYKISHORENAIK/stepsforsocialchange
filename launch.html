@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Launch | Steps For Social Change</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti Library for Flower Drop Effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --id-primary: #0A3622;
+            --id-secondary: #D4AF37;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--id-primary);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        /* --- Welcome / Inauguration Section --- */
+        .welcome-section {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 30;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .ngo-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid var(--id-secondary);
+            margin-bottom: 8px;
+        }
+
+        .inaugurated-by {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--id-secondary);
+            margin-bottom: 12px;
+        }
+
+        /* --- Enlarged & Enhanced Guest Photo --- */
+        .guest-photo {
+            width: 320px;  /* Enlarged from 220px for high visibility */
+            height: 320px;
+            border-radius: 50%;
+            border: 6px solid var(--id-secondary);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.75), 0 15px 35px rgba(0,0,0,0.6);
+            object-fit: cover;
+            object-position: center 20%;
+            margin-bottom: 18px;
+            filter: contrast(1.18) brightness(1.08) saturate(1.15);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .guest-photo:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.9), 0 20px 40px rgba(0,0,0,0.7);
+        }
+
+        .guest-name {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: #ffffff;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+        }
+
+        .guest-title {
+            font-size: 16px;
+            max-width: 650px;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .launch-btn {
+            background: linear-gradient(135deg, #D4AF37, #AA8222);
+            color: #111;
+            border: none;
+            padding: 16px 42px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 40;
+        }
+
+        .launch-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        /* --- Ribbon Positioned Behind Launch Button --- */
+        .ribbon-container {
+            position: absolute;
+            bottom: 35px;
+            top: auto;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .ribbon-left, .ribbon-right {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to bottom, #d32f2f, #9c1414, #d32f2f);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transition: transform 4s cubic-bezier(0.65, 0, 0.15, 1);
+            position: relative;
+        }
+
+        .ribbon-left::after {
+            content: '';
+            position: absolute;
+            right: -15px; top: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 15px solid #9c1414;
+        }
+
+        .ribbon-right::before {
+            content: '';
+            position: absolute;
+            left: -15px; top: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-right: 15px solid #9c1414;
+        }
+
+        .cut .ribbon-left { transform: translateX(-100vw); }
+        .cut .ribbon-right { transform: translateX(100vw); }
+
+        /* --- Team Display Section --- */
+        .team-section {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: none; 
+            opacity: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 15;
+            transition: opacity 2.5s ease-in-out;
+            background: radial-gradient(circle, #0D452C 0%, #051A10 100%);
+        }
+
+        .team-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--id-secondary);
+            font-size: 38px;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            max-width: 1100px;
+            padding: 0 20px;
+        }
+
+        .team-member {
+            text-align: center;
+            opacity: 0;
+            animation: cinematicReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 1.0s; }
+        .team-member:nth-child(2) { animation-delay: 2.2s; }
+        .team-member:nth-child(3) { animation-delay: 3.4s; }
+        .team-member:nth-child(4) { animation-delay: 4.6s; }
+        .team-member:nth-child(5) { animation-delay: 5.8s; }
+        .team-member:nth-child(6) { animation-delay: 7.0s; }
+        .team-member:nth-child(7) { animation-delay: 8.2s; }
+        .team-member:nth-child(8) { animation-delay: 9.4s; }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--id-secondary);
+            object-fit: cover;
+            margin-bottom: 12px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .team-member h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .team-member p {
+            margin: 0;
+            font-size: 12px;
+            color: var(--id-secondary);
+            font-weight: 600;
+        }
+
+        .redirect-msg {
+            margin-top: 50px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes cinematicReveal {
+            0% { transform: translateY(40px) scale(0.9); opacity: 0; filter: blur(8px); }
+            100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.2; }
+        }
+
+        @media (max-width: 768px) {
+            .guest-name { font-size: 28px; }
+            .guest-title { font-size: 14px; margin-bottom: 25px; }
+            .guest-photo { width: 190px; height: 190px; } 
+            .team-member img { width: 75px; height: 75px; }
+            .ribbon-container { bottom: 32px; height: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Red Ribbon -->
+    <div class="ribbon-container" id="ribbon">
+        <div class="ribbon-left"></div>
+        <div class="ribbon-right"></div>
+    </div>
+
+    <!-- Screen 1: Welcome & Inauguration -->
+    <div class="welcome-section" id="welcome-screen">
+        <img src="logo.jpg" alt="NGO Logo" class="ngo-logo">
+        <p class="inaugurated-by">Officially Inaugurated By</p>
+        
+        <img src="EBFD7FA6-136A-48BC-BE42-DB5E4E764F92.png" alt="Shri Ambica G Lakshminarayana Valmiki" class="guest-photo">
+        
+        <h1 class="guest-name">Shri Banoth Chkree Naik Garu</h1>
+        <p class="guest-title">State President of All India Banjara Seva Sangh<br>Andhra Pradesh</p>
+        
+        <button class="launch-btn" onclick="inaugurate()">
+            <i class="fa-solid fa-scissors"></i> Cut Ribbon & Launch
+        </button>
+    </div>
+
+    <!-- Screen 2: Team Celebration -->
+    <div class="team-section" id="team-screen">
+        <h2>The Core Visionaries</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="32F8282D-B2FC-4F98-9BF4-0353308B3AF3.png" alt="Sai Kumar Badigi">
+                <h4>Sai Kumar Badigi</h4>
+                <p>Founder & Managing Director</p>
+            </div>
+            <div class="team-member">
+                <img src="1778854473541.jpeg" alt="Kishore Naik">
+                <h4>Kishore Naik</h4>
+                <p>Corporate & IT Head</p>
+            </div>
+            <div class="team-member">
+                <img src="IMG-20260825-WA0055.jpg" alt="Feyisara Ayeku">
+                <h4>Feyisara Ayeku</h4>
+                <p>Head of Africa Region</p>
+            </div>
+            <div class="team-member">
+                <img src="unnamed-3.jpg" alt="Neelakanta">
+                <h4>Neelakanta</h4>
+                <p>Project Implementation</p>
+            </div>
+            <div class="team-member">
+                <img src="unnamed-4.jpg" alt="Athar Saleem">
+                <h4>Athar Saleem</h4>
+                <p>Regional Head - UP</p>
+            </div>
+            <div class="team-member">
+                <img src="IMG-20260901-WA0000.jpg" alt="A. Sharavi">
+                <h4>A. Sharavi</h4>
+                <p>Women Empowerment</p>
+            </div>
+            <div class="team-member">
+                <img src="Gemini_Generated_Image_otv3gtotv3gtotv3.png" alt="Sesha Sriram">
+                <h4>Sesha Sriram</h4>
+                <p>State Head - TN</p>
+            </div>
+            <div class="team-member">
+                <img src="unnamed-5.jpg" alt="Wazid Azeem">
+                <h4>Wazid Azeem</h4>
+                <p>Community Ops</p>
+            </div>
+        </div>
+        <p class="redirect-msg">Entering website...</p>
+    </div>
+
+    <script>
+        function inaugurate() {
+            // 1. Cut the Ribbon
+            document.getElementById('ribbon').classList.add('cut');
+
+            // 2. Start Flower/Confetti Fall
+            shootFlowers();
+
+            // 3. Fade out Welcome Screen
+            const welcomeScreen = document.getElementById('welcome-screen');
+            welcomeScreen.style.transition = 'opacity 2s ease-in-out';
+            
+            setTimeout(() => {
+                welcomeScreen.style.opacity = '0';
+            }, 1500);
+
+            // 4. Show Team Screen
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                const teamScreen = document.getElementById('team-screen');
+                teamScreen.style.display = 'flex';
+                
+                setTimeout(() => {
+                    teamScreen.style.opacity = '1';
+                }, 100);
+            }, 3500);
+
+            // 5. Grand redirect
+            setTimeout(() => {
+                window.location.href = 'index.html'; 
+            }, 17000);
+        }
+
+        // Cinematic Flower Petal Confetti
+        function shootFlowers() {
+            var duration = 12 * 1000; 
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 25, spread: 360, ticks: 100, zIndex: 100 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 40 * (timeLeft / duration);
+                var flowerColors = ['#e91e63', '#ffeb3b', '#ffffff', '#d4af37', '#ff9800'];
+
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    colors: flowerColors,
+                    origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } 
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    colors: flowerColors,
+                    origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } 
+                }));
+            }, 350);
+        }
+    </script>
+</body>
+</html>

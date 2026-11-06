@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Digital IDs with QR | Steps For Social Change</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas library for downloading the IDs as images -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* Standalone Premium Styles for Digital IDs */
+        :root {
+            --id-primary: #0A3622; /* Deep NGO Green */
+            --id-secondary: #D4AF37; /* Premium Gold */
+            --id-text: #333333;
+            --id-bg: #Eef2f5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--id-bg);
+            margin: 0;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-title {
+            text-align: center;
+            color: var(--id-primary);
+            margin-bottom: 50px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* --- ID Card Container --- */
+        .id-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            max-width: 1200px;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* --- Premium ID Card Design --- */
+        .id-card {
+            width: 320px;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .id-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+        }
+
+        /* Header Section */
+        .id-header {
+            background: var(--id-primary);
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 20px 60px 20px;
+            border-top: 6px solid var(--id-secondary);
+            position: relative;
+        }
+
+        .id-header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .id-header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .id-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--id-secondary);
+        }
+
+        .id-header h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Photo Section */
+        .id-photo-wrapper {
+            text-align: center;
+            margin-top: -55px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .id-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            object-fit: cover;
+            background: #fff;
+        }
+
+        /* Body Section */
+        .id-body {
+            text-align: center;
+            padding: 15px 20px 25px 20px;
+        }
+
+        .id-name {
+            color: var(--id-primary);
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .id-title {
+            color: var(--id-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 15px 0;
+        }
+
+        /* Information & QR Layout Container */
+        .id-info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* Personal Details Box */
+        .id-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px 12px;
+            text-align: left;
+            border-left: 4px solid var(--id-secondary);
+            flex: 1;
+        }
+
+        .id-details p {
+            margin: 6px 0;
+            font-size: 12px;
+            color: var(--id-text);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .id-details strong {
+            color: var(--id-primary);
+            font-weight: 600;
+        }
+
+        /* QR Code Styling for ID */
+        .id-qr {
+            width: 55px;
+            height: 55px;
+            padding: 3px;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Footer Section */
+        .id-footer {
+            background: var(--id-primary);
+            padding: 15px 25px;
+            text-align: center;
+        }
+
+        .id-footer p {
+            color: #ffffff;
+            font-size: 12px;
+            margin: 0;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* Download Button */
+        .btn-download {
+            background: var(--id-secondary);
+            color: var(--id-primary);
+            border: none;
+            padding: 10px 25px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-download:hover {
+            background: var(--id-primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* --- Visiting Card Section --- */
+        .visiting-card-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px dashed rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .visiting-card-section h2 {
+            color: var(--id-primary);
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        /* Horizontal Layout for Premium Feel */
+        .visiting-card {
+            width: 650px;
+            height: 340px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Left Side - Deep Green Branding */
+        .vc-left {
+            background: var(--id-primary);
+            width: 40%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            border-right: 4px solid var(--id-secondary);
+            position: relative;
+        }
+
+        .vc-left::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .vc-left img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--id-secondary);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vc-left h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vc-left p {
+            font-size: 11px;
+            color: var(--id-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Right Side - Clean Information */
+        .vc-right {
+            width: 60%;
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .vc-header h4 {
+            color: var(--id-primary);
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .vc-header p {
+            color: #666;
+            font-size: 13px;
+            margin: 0 0 25px 0;
+            font-weight: 600;
+        }
+
+        .vc-contact-layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .vc-contact p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--id-text);
+            margin: 12px 0;
+            font-weight: 500;
+        }
+
+        .vc-contact i {
+            color: var(--id-secondary);
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* QR Code on Visiting Card */
+        .vc-qr-container {
+            text-align: center;
+        }
+        
+        .vc-qr-container p {
+            font-size: 9px;
+            color: #888;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vc-qr {
+            width: 85px;
+            height: 85px;
+            border: 2px solid var(--id-secondary);
+            border-radius: 8px;
+            padding: 4px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive Mobile Stack */
+        @media (max-width: 650px) {
+            .visiting-card {
+                flex-direction: column;
+                width: 320px;
+                height: auto;
+            }
+            .vc-left {
+                width: 100%;
+                padding: 40px 20px;
+                border-right: none;
+                border-bottom: 4px solid var(--id-secondary);
+            }
+            .vc-right {
+                width: 100%;
+                padding: 30px 20px;
+            }
+            .vc-contact-layout {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-title">
+        <h1>Official Team Digital IDs</h1>
+        <p>Click the download button below your card to save a high-resolution copy directly to your device.</p>
+    </div>
+
+    <div class="id-grid">
+        
+        <!-- Sai Kumar Badigi -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-sai">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="32F8282D-B2FC-4F98-9BF4-0353308B3AF3.png" alt="Sai Kumar Badigi" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Sai Kumar Badigi</h3>
+                    <p class="id-title">Founder & Managing Director</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-001</span></p>
+                            <p><strong>LOC:</strong> <span>Andhra Pradesh</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-sai', 'Sai_Kumar_Badigi_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- Kishore Naik Vadithya -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-kishore">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="1778854473541.jpeg" alt="Kishore Naik Vadithya" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Kishore Naik Vadithy</h3>
+                    <p class="id-title">Corporate & IT Head</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-002</span></p>
+                            <p><strong>LOC:</strong> <span>Telangana</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-kishore', 'Kishore_Naik_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- Feyisara Ayeku -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-feyi">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="IMG-20260825-WA0055.jpg" alt="Feyisara Ayeku" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Feyisara Ayeku</h3>
+                    <p class="id-title">Head of Africa Region</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-003</span></p>
+                            <p><strong>LOC:</strong> <span>Africa - Lagos</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-feyi', 'Feyisara_Ayeku_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- Neelakanta -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-neelakanta">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="unnamed-3.jpg" alt="Neelakanta" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Neelakanta</h3>
+                    <p class="id-title">Head of Project Implementation</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-004</span></p>
+                            <p><strong>LOC:</strong> <span>Karnataka</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-neelakanta', 'Neelakanta_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- Athar Saleem -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-athar">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="unnamed-4.jpg" alt="Athar Saleem" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Athar Saleem</h3>
+                    <p class="id-title">Regional Head - UP</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-005</span></p>
+                            <p><strong>LOC:</strong> <span>Uttar Pradesh</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-athar', 'Athar_Saleem_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- A. Sharavi -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-sharavi">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="IMG-20260901-WA0000.jpg" alt="A. Sharavi" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">A. Sharavi</h3>
+                    <p class="id-title">Women Empowerment Lead</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-006</span></p>
+                            <p><strong>LOC:</strong> <span>Karnataka</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-sharavi', 'Sharavi_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- Sesha Sriram -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-sesha">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="Gemini_Generated_Image_otv3gtotv3gtotv3.png" alt="Sesha Sriram" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Sesha Sriram</h3>
+                    <p class="id-title">State Head - Tamil Nadu</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-007</span></p>
+                            <p><strong>LOC:</strong> <span>Tamil Nadu</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-sesha', 'Sesha_Sriram_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+        <!-- Wazid Azeem -->
+        <div class="card-wrapper">
+            <div class="id-card" id="card-wazid">
+                <div class="id-header">
+                    <div class="id-header-top">
+                        <img src="logo.jpg" alt="Logo" class="id-logo">
+                        <h2>STEPS FOR SOCIAL CHANGE</h2>
+                    </div>
+                </div>
+                <div class="id-photo-wrapper">
+                    <img src="unnamed-5.jpg" alt="Wazid Azeem" class="id-photo">
+                </div>
+                <div class="id-body">
+                    <h3 class="id-name">Wazid Azeem</h3>
+                    <p class="id-title">Advisor of Community Mobilization</p>
+                    <div class="id-info-row">
+                        <div class="id-details">
+                            <p><strong>EMP ID:</strong> <span>SSC-2026-008</span></p>
+                            <p><strong>LOC:</strong> <span>Delhi</span></p>
+                        </div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="id-qr" crossorigin="anonymous">
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p><strong>ISSUED:</strong> OCT 2026 | VALID FOR OFFICIAL USE</p>
+                </div>
+            </div>
+            <button class="btn-download" onclick="downloadID('card-wazid', 'Wazid_Azeem_ID')"><i class="fa-solid fa-download"></i> Download ID</button>
+        </div>
+
+    </div>
+
+    <!-- General NGO Visiting Card Section -->
+    <div class="visiting-card-section">
+        <h2>Official NGO Visiting Card</h2>
+        
+        <div class="card-wrapper">
+            <div class="visiting-card" id="card-visiting">
+                <div class="vc-left">
+                    <img src="logo.jpg" alt="Logo">
+                    <h3>STEPS FOR SOCIAL CHANGE</h3>
+                    <p>Unity. Growth. Progress.</p>
+                </div>
+                <div class="vc-right">
+                    <div class="vc-header">
+                        <h4>Let's Drive Impact Together</h4>
+                        <p>Corporate Partnerships & CSR Initiatives</p>
+                    </div>
+                    
+                    <div class="vc-contact-layout">
+                        <div class="vc-contact">
+                            <p><i class="fa-solid fa-envelope"></i> contact@stepsforsocialchange.org</p>
+                            <p><i class="fa-solid fa-phone"></i> +91 93476 84267 || +91 84988 48245</p>
+                            <p><i class="fa-solid fa-globe"></i> https://stepsforsocialchange.netlify.app</p>
+                            <p><i class="fa-solid fa-location-dot"></i> Andhra Pradesh, India</p>
+                        </div>
+                        
+                        <!-- Visiting Card QR -->
+                        <div class="vc-qr-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://stepsforsocialchange.netlify.app" alt="Website QR" class="vc-qr" crossorigin="anonymous">
+                            <p>Scan to Visit</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <button class="btn-download" onclick="downloadID('card-visiting', 'Steps_For_Social_Change_Visiting_Card')" style="margin-top: 20px;">
+                <i class="fa-solid fa-download"></i> Download Visiting Card
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle the seamless image download -->
+    <script>
+        function downloadID(cardId, fileName) {
+            const card = document.getElementById(cardId);
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+            btn.style.pointerEvents = 'none';
+
+            html2canvas(card, { 
+                scale: 3,
+                useCORS: true,
+                allowTaint: true,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = fileName + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                btn.innerHTML = originalText;
+                btn.style.pointerEvents = 'auto';
+            }).catch(err => {
+                console.error("Error generating ID card:", err);
+                alert("Browser security policy is blocking direct download from a local file path. Please open this page using VS Code Live Server or host it on your website.");
+                btn.innerHTML = originalText;
+                btn.style.pointerEvents = 'auto';
+            });
+        }
+    </script>
+
+</body>
+</html>
