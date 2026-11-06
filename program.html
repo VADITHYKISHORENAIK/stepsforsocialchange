@@ -12,7 +12,7 @@
       --primary: #1b4332;
       --accent: #2d6a4f;
       --highlight: #52b788;
-      --bg-light: #f8faf9;
+      --bg-light: #f4f7f5;
       --card-bg: #ffffff;
       --text-main: #1f2937;
       --text-muted: #6b7280;
@@ -24,7 +24,7 @@
     header {
       background: linear-gradient(135deg, #081c15 0%, #1b4332 100%);
       color: white;
-      padding: 60px 20px 80px;
+      padding: 60px 20px 90px;
       text-align: center;
       position: relative;
     }
@@ -55,17 +55,17 @@
     }
     header h1 { font-size: 2.5rem; font-weight: 800; }
 
-    .main-container { max-width: 960px; margin: -40px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
+    .main-container { max-width: 960px; margin: -50px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
 
     .blog-card {
       background: var(--card-bg);
       border-radius: 20px;
       padding: 40px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
       margin-bottom: 40px;
-      border: 1px solid rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.04);
     }
-    .blog-header h2 { font-size: 2rem; color: var(--primary); margin-bottom: 12px; }
+    .blog-header h2 { font-size: 2.1rem; color: var(--primary); margin-bottom: 12px; font-weight: 700; }
     .meta-pills { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
     .meta-pills span { display: flex; align-items: center; gap: 6px; }
 
@@ -75,29 +75,30 @@
       object-fit: cover;
       border-radius: 16px;
       margin-bottom: 30px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
 
-    .article-body { font-size: 1.05rem; color: #374151; margin-bottom: 35px; }
+    .article-body { font-size: 1.05rem; color: #374151; margin-bottom: 35px; border-bottom: 1px solid #edf2f7; padding-bottom: 25px; }
     .article-body p { margin-bottom: 1.2rem; }
 
-    /* Media Sections */
-    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+    .section-title { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin: 30px 0 18px; display: flex; align-items: center; gap: 10px; }
     
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+      gap: 18px;
       margin-bottom: 30px;
     }
     .gallery-grid img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
-    .gallery-grid img:hover { transform: scale(1.03); }
+    .gallery-grid img:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(0,0,0,0.15); }
 
     .video-container {
       position: relative;
@@ -109,8 +110,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     }
     .video-container iframe, .video-container video {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
     }
 
     .document-card {
@@ -119,8 +119,8 @@
       justify-content: space-between;
       background: #f0fdf4;
       border: 1.5px solid #bbf7d0;
-      border-radius: 12px;
-      padding: 18px 24px;
+      border-radius: 14px;
+      padding: 20px 26px;
       margin-bottom: 30px;
     }
     .document-info { display: flex; align-items: center; gap: 14px; }
@@ -128,7 +128,7 @@
     .download-btn {
       background: var(--accent);
       color: white;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
@@ -137,19 +137,19 @@
     }
     .download-btn:hover { background: var(--primary); }
 
-    .no-posts { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .no-posts { text-align: center; padding: 60px 20px; color: var(--text-muted); background: white; border-radius: 20px; }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="index.html#our-programmes" class="nav-back">← Back to Home</a>
-    <span class="category-badge" id="category-name">Empowering Grassroots</span>
+    <a href="index.html#programmes" class="nav-back">← Back to Home</a>
+    <span class="category-badge" id="category-name">Program Updates</span>
     <h1>Program Updates & Impact Vlogs</h1>
   </header>
 
   <main class="main-container" id="vlog-container">
-    <div class="blog-card"><p>Loading program details...</p></div>
+    <div class="blog-card"><p style="text-align:center; color: var(--text-muted);">Loading updates...</p></div>
   </main>
 
   <script>
@@ -165,7 +165,7 @@
         const files = await response.json();
 
         if (!Array.isArray(files) || files.length === 0) {
-          container.innerHTML = '<div class="blog-card no-posts"><h3>No updates published yet</h3><p>Check back soon for new program updates.</p></div>';
+          container.innerHTML = '<div class="no-posts"><h3>No updates published for this program yet</h3></div>';
           return;
         }
 
@@ -177,14 +177,12 @@
             const rawRes = await fetch(file.download_url);
             const markdown = await rawRes.text();
 
-            // Extract YAML Frontmatter & Markdown Body
             const fmMatch = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
             if (!fmMatch) continue;
 
             const yamlText = fmMatch[1];
             const bodyText = fmMatch[2];
 
-            // Parse Meta Fields
             const getVal = (key) => {
               const m = yamlText.match(new RegExp(`${key}:\\s*["']?(.*?)["']?\\n`));
               return m ? m[1].trim() : '';
@@ -202,26 +200,34 @@
             const videoUrl = getVal('video_url');
             const docFile = getVal('document_file');
 
-            // Parse Gallery Array from YAML
+            // Robust YAML multi-line gallery parser
             const galleryImages = [];
-            const galleryMatches = yamlText.match(/- image:\s*["']?(.*?)["']?/g);
-            if (galleryMatches) {
-              galleryMatches.forEach(item => {
-                const imgPath = item.replace(/- image:\s*["']?/, '').replace(/["']?$/, '').trim();
-                if (imgPath) galleryImages.push(imgPath);
-              });
+            const galleryLines = yamlText.split('\n');
+            let inGallery = false;
+            for (let line of galleryLines) {
+              if (line.startsWith('gallery:')) {
+                inGallery = true;
+                continue;
+              }
+              if (inGallery) {
+                if (line.trim().startsWith('- image:')) {
+                  const imgPath = line.replace(/.*- image:\s*["']?/, '').replace(/["']?$/, '').trim();
+                  if (imgPath) galleryImages.push(imgPath);
+                } else if (!line.startsWith(' ') && !line.startsWith('\t')) {
+                  inGallery = false;
+                }
+              }
             }
 
-            // Build Card HTML
             const card = document.createElement('article');
             card.className = 'blog-card';
 
             let galleryHTML = '';
             if (galleryImages.length > 0) {
               galleryHTML = `
-                <div class="section-title">📸 Photo Gallery (${galleryImages.length})</div>
+                <div class="section-title">📸 Event Gallery (${galleryImages.length} Photos)</div>
                 <div class="gallery-grid">
-                  ${galleryImages.map(img => `<img src="${img}" alt="Gallery photo" loading="lazy">`).join('')}
+                  ${galleryImages.map(img => `<img src="${img}" alt="Gallery photo" loading="lazy" onclick="window.open('${img}', '_blank')">`).join('')}
                 </div>
               `;
             }
@@ -229,7 +235,7 @@
             let videoHTML = '';
             if (videoUrl) {
               videoHTML = `
-                <div class="section-title">🎥 Program Video / Vlog</div>
+                <div class="section-title">🎥 Program Video</div>
                 <div class="video-container">
                   <iframe src="${videoUrl}" allowfullscreen></iframe>
                 </div>
@@ -239,13 +245,13 @@
             let docHTML = '';
             if (docFile) {
               docHTML = `
-                <div class section-title">📄 Associated Report / Document</div>
+                <div class="section-title">📄 Program Report / Document</div>
                 <div class="document-card">
                   <div class="document-info">
                     <span class="document-icon">📑</span>
                     <div>
-                      <strong>Program Document / Report</strong>
-                      <p style="font-size:0.85rem; color:#6b7280;">Click download to view full document</p>
+                      <strong>Official Document</strong>
+                      <p style="font-size:0.85rem; color:#6b7280;">Click view to read full PDF/Doc</p>
                     </div>
                   </div>
                   <a href="${docFile}" target="_blank" class="download-btn">View Document</a>
@@ -278,11 +284,11 @@
         }
 
         if (matchCount === 0) {
-          container.innerHTML = '<div class="blog-card no-posts"><h3>No updates published for this program yet</h3><p>Use Decap CMS to add your first post!</p></div>';
+          container.innerHTML = '<div class="no-posts"><h3>No updates published for this program yet</h3></div>';
         }
 
       } catch (err) {
-        container.innerHTML = '<div class="blog-card no-posts"><h3>Error loading updates</h3></div>';
+        container.innerHTML = '<div class="no-posts"><h3>Unable to load updates at this time</h3></div>';
       }
     }
 
