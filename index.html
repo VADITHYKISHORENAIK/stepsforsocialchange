@@ -212,7 +212,17 @@
             <p>&copy; 2026 Steps For Social Change. All Rights Reserved. Designed for Netlify.</p>
         </div>
     </footer>
-
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
     <script src="script.js"></script>
 </body>
 </html>
